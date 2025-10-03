@@ -43,7 +43,7 @@ void odom_constants(){
 // write auton code here. only use driver test for now.
 void drive_test(){ 
 
-//Rightside Auto (works for both blue and red)
+//Rightside Auto
 /*chassis.set_heading(0);
 Lift.spin(forward, 50, percent);
 Intake1.spin(reverse, 100, percent);
@@ -62,7 +62,7 @@ Intake1.spin(forward, 40, percent);
 wait(3, sec);      
 */
 
-//Leftside Auto (works for both blue and red) DONE
+//Leftside Auto 
   /*
   chassis.set_heading(0);
   Intake1.spin(reverse, 100, percent); 
@@ -83,7 +83,7 @@ wait(3, sec);
   wait(3, sec);
   */
 
-//High Goal auto
+//Left High Goal auto w/ Matchloader
   
  /*
   chassis.set_heading(0);
