@@ -13,11 +13,11 @@ controller Controller1 = controller(primary);
 // motor Roller = motor(PORT16,ratio18_1,false);\
 
 digital_out MatchLoader = digital_out(Brain.ThreeWirePort.A);
+digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 
 
 
-bool isRunning = false;
+bool isDoinker = false;
 bool isLoad = false;
-bool isRamp = false;
 
 
