@@ -44,133 +44,28 @@ void odom_constants(){
 void drive_test(){ 
 
 //Rightside Auto
-/*chassis.set_heading(0);
-Lift.spin(forward, 50, percent);
-Intake1.spin(reverse, 100, percent);
-chassis.drive_max_voltage = 8;
-chassis.drive_distance(38);
-wait(2, sec);
-chassis.drive_distance(-12);
-wait(20, msec);
 
-Intake1.stop();
-chassis.turn_to_angle(-66);
-wait(100, msec);
-chassis.drive_max_voltage = 12;
-chassis.drive_distance(15);
-Intake1.spin(forward, 40, percent);
-wait(3, sec);      
-*/
+
+
 
 //Leftside Auto 
-  /*
-  chassis.set_heading(0);
-  Intake1.spin(reverse, 100, percent); 
-  chassis.drive_max_voltage = 7;
-  chassis.drive_distance(32);
-  wait(20, msec);
-  Intake1.stop();
-  chassis.drive_distance(-3);
-  wait(20, msec);
   
-  chassis.turn_to_angle(69);
-  wait(100, msec);
-  Lift.spin(reverse, 100, percent);
-  chassis.drive_max_voltage = 12;
-  wait(1, sec);
-  chassis.drive_distance(11);
-  Intake1.spin(forward, 67, percent);
-  wait(3, sec);
-  */
+  
 
 //Left High Goal auto w/ Matchloader
   
- /*
-  chassis.set_heading(0);
-  wait(20, msec);
-  chassis.drive_distance(15);
-  chassis.turn_to_angle(-90);
-  chassis.drive_max_voltage = 7;
-  chassis.drive_distance(33);
-  chassis.turn_to_angle(-180);
-  wait(20, msec);
-  MatchLoader.set(true);
-  Lift.spin(forward, 50, percent);
-  chassis.drive_max_voltage = 7;
-  chassis.drive_distance(29.5);
-  Intake1.spin(reverse, 100, percent);
-  wait(2, msec);
-  Intake1.spin(reverse, 100, percent);
-  wait(3, sec);
-  chassis.drive_max_voltage = 12;
-  chassis.drive_distance(-5);
-  chassis.turn_to_angle(360);
-  chassis.set_heading(0);
-  chassis.drive_distance(27);
-  wait(2, msec);
-  Lift.spin(reverse, 100, percent);
-  Intake1.spin(forward, 100, percent);
-  wait(2, sec);
-  */
-
- /**
-  Lift.spin(forward, 50, percent);
-  chassis.drive_distance(25);
-  chassis.turn_to_angle(-90);
-  wait(20, msec);
-  chassis.drive_max_voltage = 7;
-  chassis.drive_distance(25);
-  Intake1.spin(reverse, 100, percent);
-  wait(2, sec);
+ 
   
-  Intake1.stop();
-  chassis.turn_to_angle(120);
-  wait(100, msec);
-  chassis.turn_to_angle(0);
-  Lift.spin(reverse, 100, percent);
-  chassis.drive_distance(12);
-  Intake1.spin(forward, 67, percent);
-  wait(3, sec);
-*/
+
+ //Right High Goal auto w/ Matchloader
+ 
 
 
-//Leftside auto high goal no matchloader PARTIALLY DONE
-chassis.set_heading(0);
-Intake1.spin(reverse, 100, percent);
-chassis.drive_max_voltage = 7;
-chassis.drive_distance(35);
-wait(2, sec);
-chassis.drive_distance(-24);
-chassis.turn_to_angle(-65);
-chassis.drive_distance(26);
-chassis.turn_to_angle(15);
-wait(20, msec);
-chassis.drive_distance(-5);
-Lift.spin(reverse, 100, percent);
-wait(20, msec);
-Intake1.spin(forward, 100, percent);
-wait(4, sec);
+//Leftside auto high goal no matchloader 
+
 
 //Rightside auto high goal no matchloader
-/*
-chassis.set_heading(0);
-Lift.spin(forward, 50, percent);
-Intake1.spin(reverse, 100, percent);
-chassis.drive_max_voltage = 7;
-chassis.drive_distance(35);
-wait(2, sec);
-chassis.drive_distance(-24);
-chassis.turn_to_angle(65);
-chassis.drive_distance(24);
-chassis.turn_to_angle(0);
-wait(20, msec);
-Lift.spin(reverse, 100, percent);
-wait(20, msec);
-chassis.drive_distance(10.5);
-wait(20, msec);
-Intake1.spin(forward, 100, percent);
-wait(4, sec);
-*/
+
 
 
 // FULL AUTON, EXPERIMENTAL

@@ -6,16 +6,17 @@ competition Competition;
 motor Left1 = motor(PORT11,ratio6_1,true); 
 motor Left2 = motor(PORT14,ratio6_1,true); 
 motor Left3 = motor(PORT15,ratio6_1,true); 
-motor_group LeftDrive = motor_group(Left1,Left2,Left3);
+motor_group LeftDrive = motor_group(Left1,Left2,Left3); // Left drivetrain
  
 motor Right1 = motor(PORT16,ratio6_1,false); 
 motor Right2 = motor(PORT17,ratio6_1,false);  
 motor Right3 = motor(PORT20,ratio6_1,false); 
-motor_group RightDrive = motor_group(Right1,Right2,Right3);
+motor_group RightDrive = motor_group(Right1,Right2,Right3); // Right drivetrain
 
-motor Intake1 = motor(PORT9,ratio6_1,false); 
-motor Lift = motor(PORT10,ratio6_1,false); 
-inertial InertialSensor = inertial(PORT12);
+motor Intake1 = motor(PORT9,ratio6_1,false); // Has 2 rubber band rollers, 2 flex wheel rollers
+motor Intake2 = motor(PORT10, ratio6_1, false); // Has 3 rubber band rollers
+motor_group Intake = motor_group(Intake1, Intake2); // Controls all rubber band rollers, 2 flex wheel rollers
+inertial InertialSensor = inertial(PORT12); // Used for auton
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -273,8 +274,7 @@ void usercontrol(void) {
   while (1) {
     // arcadeDrive();  // arcade drive control
     chassis.control_arcade();
-    Intake1.setVelocity(100,pct);
-    Lift.setVelocity(100,pct);
+    Intake.setVelocity(100,pct);
 
 if (isLoad) {
   MatchLoader.set(true);
@@ -291,20 +291,13 @@ if(Controller1.ButtonA.pressing()) {
 
 
   if (Controller1.ButtonL1.pressing()) {
-    Intake1.spin(reverse);
+    Intake.spin(reverse);
   } else if (Controller1.ButtonL2.pressing()) {
-    Intake1.spin(forward);
+    Intake.spin(forward);
   } else {
-    Intake1.stop();
+    Intake.stop();
   }
 
-  if (Controller1.ButtonR1.pressing()) {
-    Lift.spin(reverse);
-  } else if (Controller1.ButtonR2.pressing()) {
-    Lift.spin(forward);
-  } else {
-    Lift.stop();
-  }
 }
 
 // prevent CPU overuse
