@@ -41,7 +41,7 @@ void odom_constants(){
  */
 
 // write auton code here. only use driver test for now.
-void frontRR(){ 
+void drive_test(){ 
   chassis.set_heading(0);
 Intake.spin(reverse, 100, percent);
 chassis.drive_max_voltage = 8;

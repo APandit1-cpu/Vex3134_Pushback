@@ -298,10 +298,6 @@ if(Controller1.ButtonB.pressing()) {
   isDoinker = !isDoinker;
   waitUntil(!Controller1.ButtonB.pressing());
 }
-
-
-
-
   if (Controller1.ButtonL1.pressing()) {
     Intake.spin(reverse);
   } else if (Controller1.ButtonL2.pressing()) {
@@ -320,7 +316,7 @@ wait(20,msec);
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   // INITIALIZE THE AUTON YOU WANT HERE: (autons are in autons.cpp)
-  Competition.autonomous(drive_test);
+  Competition.autonomous(frontL);
   Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.

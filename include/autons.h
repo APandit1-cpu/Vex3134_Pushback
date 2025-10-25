@@ -7,7 +7,6 @@ extern Drive chassis;
 
 void default_constants();
 
-void frontR();
 void frontL();
 void frontRB();
 void frontLB();
