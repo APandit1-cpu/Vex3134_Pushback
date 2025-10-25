@@ -41,124 +41,53 @@ void odom_constants(){
  */
 
 // write auton code here. only use driver test for now.
-void drive_test(){ 
+void frontRR(){ 
+  chassis.set_heading(0);
+Intake.spin(reverse, 100, percent);
+chassis.drive_max_voltage = 8;
+chassis.drive_distance(38);
+wait(2, sec);
+chassis.drive_distance(-12);
+wait(20, msec);
 
-//Rightside Auto
+Intake.stop();
+chassis.turn_to_angle(-66);
+wait(100, msec);
+chassis.drive_max_voltage = 12;
+chassis.drive_distance(15);
+Intake.spin(forward, 40, percent);
+wait(3, sec);     
 
-
-
-
-//Leftside Auto 
-  
-  
-
-//Left High Goal auto w/ Matchloader
-  
- 
-  
-
- //Right High Goal auto w/ Matchloader
- 
-
-
-//Leftside auto high goal no matchloader 
-
-
-//Rightside auto high goal no matchloader
-
-
-
-// FULL AUTON, EXPERIMENTAL
-/*
-chassis.set_heading(0);
-*/
 }
 
-/**
- * The expected behavior is to return to the start angle, after making a complete turn.
- */
-
-
-//other autons, however we are using drive test only. 
-
-
-
-
-/// @brief 
-void turn_test(){
-  chassis.turn_to_angle(5);
-  chassis.turn_to_angle(30);
-  chassis.turn_to_angle(90);
-  chassis.turn_to_angle(225);
-  chassis.turn_to_angle(0);
+void frontL(){
+  chassis.set_heading(0);
+  Intake1.spin(forward, 100, percent); 
+  chassis.drive_max_voltage = 7;
+  chassis.drive_distance(32);
+  wait(20, msec);
+  Intake1.stop();
+  chassis.drive_distance(-3);
+  wait(20, msec);
+  chassis.turn_to_angle(249);
+  wait(100, msec);
+  chassis.drive_max_voltage = 12;
+  wait(1, sec);
+  chassis.drive_distance(11);
+  Intake1.spin(reverse, 67, percent);
+  wait(3, sec);
 }
 
-/**
- * Should swing in a fun S shape.
- */
+void HighGoalLR();
+void HighGoalRR();
+void HighGoalLB();
+void HighGoalRB();
+void MHighGoalLR();
 
-void swing_test(){
-  chassis.left_swing_to_angle(90);
-  chassis.right_swing_to_angle(0);
-}
-
-/**
- * A little of this, a little of that; it should end roughly where it started.
- */
-
-void full_test(){ 
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(-45);
-  chassis.drive_distance(-36);
-  chassis.right_swing_to_angle(-90);
-  chassis.drive_distance(24);
-  chassis.turn_to_angle(0);
-}
-
-/**
- * Doesn't drive the robot, but just prints coordinates to the Brain screen 
- * so you can check if they are accurate to life. Push the robot around and
- * see if the coordinates increase like you'd expect.
- */
-
-void odom_test(){
-  chassis.set_coordinates(0, 0, 0);
-  while(1){
-    // Brain.Screen.clearScreen();
-    // Brain.Screen.printAt(5,20, "X: %f", chassis.get_X_position());
-    // Brain.Screen.printAt(5,40, "Y: %f", chassis.get_Y_position());
-    // Brain.Screen.printAt(5,60, "Heading: %f", chassis.get_absolute_heading());
-    // Brain.Screen.printAt(5,80, "ForwardTracker: %f", chassis.get_ForwardTracker_position());
-    // Brain.Screen.printAt(5,100, "SidewaysTracker: %f", chassis.get_SidewaysTracker_position());
-    //ignore this error, its meant to be here, otherwise the brain will malfunction.
-    task::sleep(20); // ignore this error, its meant to be here, otherwise the brain will malfunction.
-  }
-}
-
-/**
- * Should end in the same place it began, but the second movement
- * will be curved while the first is straight.
- */
-
-void tank_odom_test(){
-  odom_constants();
-  chassis.set_coordinates(0, 0, 0);
-  chassis.turn_to_point(24, 24);
-  chassis.drive_to_point(24,24);
-  chassis.drive_to_point(0,0);
-  chassis.turn_to_angle(0);
-}
-
-/**
- * Drives in a square while making a full turn in the process. Should
- * end where it started.
- */
-
-void holonomic_odom_test(){
-  odom_constants();
-  chassis.set_coordinates(0, 0, 0);
-  chassis.holonomic_drive_to_pose(0, 18, 90);
-  chassis.holonomic_drive_to_pose(18, 0, 180);
-  chassis.holonomic_drive_to_pose(0, 18, 270);
-  chassis.holonomic_drive_to_pose(0, 0, 0);
-}
+void drive_test();
+void turn_test();
+void swing_test();
+void full_test();
+void odom_test();
+void tank_odom_test();
+void holonomic_odom_test();

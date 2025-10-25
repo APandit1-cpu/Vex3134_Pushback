@@ -7,6 +7,16 @@ extern Drive chassis;
 
 void default_constants();
 
+void frontR();
+void frontL();
+void frontRB();
+void frontLB();
+void HighGoalLR();
+void HighGoalRR();
+void HighGoalLB();
+void HighGoalRB();
+void MHighGoalLR();
+
 void drive_test();
 void turn_test();
 void swing_test();

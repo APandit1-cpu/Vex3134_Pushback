@@ -19,15 +19,21 @@ extern motor Right3;
 extern motor_group RightDrive;
 
 extern motor Intake1;
-extern motor Lift;
+extern motor Intake2;
+extern motor_group Intake;
+
 // extern motor Roller;
 
 extern digital_out MatchLoader;
+extern digital_out Doinker;
 extern digital_out RampExtension;
+extern vex::vision VisionSensor;
 
 extern bool isRunning;
 extern bool isLoad;
 extern bool isExtension;
 extern bool isRamp;
+extern bool isDoinker;
+
 
 void  vexcodeInit( void );

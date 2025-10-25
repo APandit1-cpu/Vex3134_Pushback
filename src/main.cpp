@@ -3,18 +3,18 @@
 using namespace vex;
 competition Competition;
 
-motor Left1 = motor(PORT11,ratio6_1,true); 
-motor Left2 = motor(PORT14,ratio6_1,true); 
-motor Left3 = motor(PORT15,ratio6_1,true); 
+motor Left1 = motor(PORT11,ratio6_1,false); 
+motor Left2 = motor(PORT14,ratio6_1,false); 
+motor Left3 = motor(PORT15,ratio6_1,false); 
 motor_group LeftDrive = motor_group(Left1,Left2,Left3); // Left drivetrain
  
-motor Right1 = motor(PORT16,ratio6_1,false); 
-motor Right2 = motor(PORT17,ratio6_1,false);  
-motor Right3 = motor(PORT20,ratio6_1,false); 
+motor Right1 = motor(PORT16,ratio6_1,true); 
+motor Right2 = motor(PORT17,ratio6_1,true);  
+motor Right3 = motor(PORT20,ratio6_1,true); 
 motor_group RightDrive = motor_group(Right1,Right2,Right3); // Right drivetrain
 
-motor Intake1 = motor(PORT9,ratio6_1,false); // Has 2 rubber band rollers, 2 flex wheel rollers
-motor Intake2 = motor(PORT10, ratio6_1, false); // Has 3 rubber band rollers
+motor Intake1 = motor(PORT9,ratio6_1,true); // Has 2 rubber band rollers, 2 flex wheel rollers
+motor Intake2 = motor(PORT8, ratio6_1, false); // Has 3 rubber band rollers
 motor_group Intake = motor_group(Intake1, Intake2); // Controls all rubber band rollers, 2 flex wheel rollers
 inertial InertialSensor = inertial(PORT12); // Used for auton
 
@@ -283,11 +283,22 @@ else {
   MatchLoader.set(false);
 }
 
+if (isDoinker) {
+  Doinker.set(true);
+}
+else {
+  Doinker.set(false);
+}
 
 if(Controller1.ButtonA.pressing()) {
   isLoad = !isLoad;
   waitUntil(!Controller1.ButtonA.pressing());
 }
+if(Controller1.ButtonB.pressing()) {
+  isDoinker = !isDoinker;
+  waitUntil(!Controller1.ButtonB.pressing());
+}
+
 
 
 
