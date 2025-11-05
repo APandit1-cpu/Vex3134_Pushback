@@ -36,47 +36,32 @@ void odom_constants(){
   chassis.drive_min_voltage = 0;
 }
 
-/**
- * The expected behavior is to return to the start position.
- */
 
-// write auton code here. only use driver test for now.
-void drive_test(){ 
-  chassis.set_heading(0);
-Intake.spin(reverse, 100, percent);
-chassis.drive_max_voltage = 8;
-chassis.drive_distance(38);
-wait(2, sec);
-chassis.drive_distance(-12);
-wait(20, msec);
-
-Intake.stop();
-chassis.turn_to_angle(-66);
-wait(100, msec);
-chassis.drive_max_voltage = 12;
-chassis.drive_distance(15);
-Intake.spin(forward, 40, percent);
-wait(3, sec);     
-
-}
 
 void frontL(){
   chassis.set_heading(0);
-  Intake1.spin(forward, 100, percent); 
-  chassis.drive_max_voltage = 7;
-  chassis.drive_distance(32);
-  wait(20, msec);
-  Intake1.stop();
-  chassis.drive_distance(-3);
-  wait(20, msec);
-  chassis.turn_to_angle(249);
-  wait(100, msec);
-  chassis.drive_max_voltage = 12;
+  chassis.drive_max_voltage = 6;
+  chassis.drive_distance(20);
+  chassis.turn_to_angle(-90);
+  Intake.spin(reverse, 100, percent);
+  chassis.drive_distance(10);
+  wait(.5, sec);
+  Intake.stop();
+  chassis.set_heading(0);
+  chassis.turn_to_angle(-20);
+  chassis.drive_distance(25);
+  chassis.set_heading(0);
+  chassis.turn_to_angle(-70);
+  chassis.drive_distance(-5);
+  Intake.spin(reverse, 100, percent);
   wait(1, sec);
-  chassis.drive_distance(11);
-  Intake1.spin(reverse, 67, percent);
-  wait(3, sec);
+  
+  
 }
+void frontR(){ 
+  chassis.set_heading(0);
+}
+
 
 void HighGoalLR();
 void HighGoalRR();
