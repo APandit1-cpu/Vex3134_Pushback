@@ -40,19 +40,21 @@ void odom_constants(){
 
 void frontL(){
   chassis.set_heading(0);
-  chassis.drive_max_voltage = 6;
+  Doinker.set(true);
+  chassis.drive_max_voltage = 4;
   chassis.drive_distance(20);
   chassis.turn_to_angle(-90);
   Intake.spin(reverse, 100, percent);
-  chassis.drive_distance(10);
-  wait(.5, sec);
+  chassis.drive_distance(16);
+  wait(2, sec);
   Intake.stop();
   chassis.set_heading(0);
-  chassis.turn_to_angle(-20);
-  chassis.drive_distance(25);
+  chassis.turn_to_angle(-25);
+  chassis.drive_distance(26);
+  Doinker.set(false);
   chassis.set_heading(0);
-  chassis.turn_to_angle(-70);
-  chassis.drive_distance(-5);
+  chassis.turn_to_angle(-65);
+  chassis.drive_distance(-8);
   Intake.spin(reverse, 100, percent);
   wait(1, sec);
   
