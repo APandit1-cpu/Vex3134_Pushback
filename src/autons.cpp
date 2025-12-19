@@ -37,35 +37,52 @@ void odom_constants(){
 }
 
 
-
+/// 4 ball auton (picks up corner balls, then goes for high goal)
 void frontL(){
   chassis.set_heading(0);
+  chassis.drive_max_voltage = 7;
   Doinker.set(true);
-  chassis.drive_max_voltage = 4;
   chassis.drive_distance(20);
   chassis.turn_to_angle(-90);
   Intake.spin(reverse, 100, percent);
   chassis.drive_distance(16);
-  wait(2, sec);
+  wait(2, msec);
   Intake.stop();
   chassis.set_heading(0);
-  chassis.turn_to_angle(-25);
-  chassis.drive_distance(26);
+  chassis.turn_to_angle(-35);
+  chassis.drive_distance(19);
   Doinker.set(false);
   chassis.set_heading(0);
-  chassis.turn_to_angle(-65);
+  chassis.turn_to_angle(-67);
   chassis.drive_distance(-8);
   Intake.spin(reverse, 100, percent);
-  wait(1, sec);
   
   
 }
+/// 4 ball auton (picks up corner balls, then goes for high goal)
 void frontR(){ 
   chassis.set_heading(0);
+  chassis.drive_max_voltage = 7;
+  Doinker.set(true);
+  chassis.drive_distance(20);
+  chassis.turn_to_angle(90);
+  Intake.spin(reverse, 100, percent);
+  chassis.drive_distance(16);
+  wait(2, msec);
+  Intake.stop();
+  chassis.set_heading(0);
+  chassis.turn_to_angle(35);
+  chassis.drive_distance(19);
+  Doinker.set(false);
+  chassis.set_heading(0);
+  chassis.turn_to_angle(67);
+  chassis.drive_distance(-8);
+  Intake.spin(reverse, 100, percent);
 }
 
 
 void HighGoalLR();
+
 void HighGoalRR();
 void HighGoalLB();
 void HighGoalRB();

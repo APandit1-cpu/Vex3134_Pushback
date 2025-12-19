@@ -14,11 +14,11 @@ controller Controller1 = controller(primary);
 
 digital_out MatchLoader = digital_out(Brain.ThreeWirePort.A);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
-digital_out Stopper = digital_out(Brain.ThreeWirePort.B);
+digital_out MidScorer = digital_out(Brain.ThreeWirePort.B);
 
 
 bool isDoinker = false;
 bool isLoad = false;
-bool isStopper = false;
+bool isMid = false;
 
 
