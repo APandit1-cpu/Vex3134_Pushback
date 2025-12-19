@@ -37,7 +37,7 @@ void odom_constants(){
 }
 
 
-/// 4 ball auton (picks up corner balls, then goes for high goal)
+/// 3-4 ball auton (picks up corner balls, then goes for high goal)
 void frontL(){
   chassis.set_heading(0);
   chassis.drive_max_voltage = 7;
@@ -59,7 +59,7 @@ void frontL(){
   
   
 }
-/// 4 ball auton (picks up corner balls, then goes for high goal)
+// 3-4 ball auton (picks up corner balls, then goes for high goal)
 void frontR(){ 
   chassis.set_heading(0);
   chassis.drive_max_voltage = 7;
@@ -80,10 +80,51 @@ void frontR(){
   Intake.spin(reverse, 100, percent);
 }
 
+// 6-7 ball auton (goes to corner goal, picks up balls, goes to matchloader, matchloads 3 balls, goes to high goal and scores)
+void HighGoalLR(){
+  chassis.set_heading(0);
+  chassis.drive_max_voltage = 7;
+  Doinker.set(true);
+  Intake.spin(reverse, 100, percent);
+  chassis.turn_to_angle(-33);
+  chassis.drive_distance(24);
+  wait(2, msec);
+  chassis.drive_distance(-20);
+  chassis.turn_to_angle(-90);
+  chassis.drive_distance(15);
+  chassis.turn_to_angle(0);
+  MatchLoader.set(true);
+  wait(2, msec);
+  chassis.drive_distance(15);
+  Intake.spin(reverse, 100, percent);
+  wait(2, msec);
+  chassis.drive_distance(-15);
+  Intake.spin(forward, 100, percent);
+}
 
-void HighGoalLR();
 
-void HighGoalRR();
+// 6-7 ball auton (goes to corner goal, picks up balls, goes to matchloader, matchloads 3 balls, goes to high goal and scores)
+void HighGoalRR(){
+  chassis.set_heading(0);
+  chassis.drive_max_voltage = 7;
+  Doinker.set(true);
+  Intake.spin(reverse, 100, percent);
+  chassis.turn_to_angle(33);
+  chassis.drive_distance(24);
+  wait(2, msec);
+  chassis.drive_distance(-20);
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(15);
+  chassis.turn_to_angle(0);
+  MatchLoader.set(true);
+  wait(2, msec);
+  chassis.drive_distance(15);
+  Intake.spin(reverse, 100, percent);
+  wait(2, msec);
+  chassis.drive_distance(-15);
+  Intake.spin(forward, 100, percent);
+}
+
 void HighGoalLB();
 void HighGoalRB();
 void MHighGoalLR();
