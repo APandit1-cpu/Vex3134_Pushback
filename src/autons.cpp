@@ -37,92 +37,121 @@ void odom_constants(){
 }
 
 
-/// 3-4 ball auton (picks up corner balls, then goes for high goal)
+
 void frontL(){
   chassis.set_heading(0);
-  chassis.drive_max_voltage = 7;
-  Doinker.set(true);
-  chassis.drive_distance(20);
+  chassis.drive_max_voltage = 6;
+  Intake2.spin(forward, 100, percent);
+  Intake1.spin(reverse, 100, percent);
+  chassis.turn_to_angle(-36);
+  chassis.drive_distance(29);
+  wait(2, msec);
+  chassis.drive_distance(-30);
+  Intake.stop();
   chassis.turn_to_angle(-90);
+  chassis.drive_distance(38);
+  Descorer.set(false);
+  chassis.turn_to_angle(-180);
+  chassis.drive_distance(-10);
   Intake.spin(reverse, 100, percent);
-  chassis.drive_distance(16);
-  wait(2, msec);
-  Intake.stop();
-  chassis.set_heading(0);
-  chassis.turn_to_angle(-35);
-  chassis.drive_distance(19);
-  Doinker.set(false);
-  chassis.set_heading(0);
-  chassis.turn_to_angle(-67);
-  chassis.drive_distance(-8);
-  Intake.spin(reverse, 100, percent);
+  /*AUTON DESCRIPTION: 
+  Picks up 3 corner balls left corner
+  , goes to high goal
+  , scores 4 balls total*/
+ 
   
-  
-}
-// 3-4 ball auton (picks up corner balls, then goes for high goal)
-void frontR(){ 
-  chassis.set_heading(0);
-  chassis.drive_max_voltage = 7;
-  Doinker.set(true);
-  chassis.drive_distance(20);
-  chassis.turn_to_angle(90);
-  Intake.spin(reverse, 100, percent);
-  chassis.drive_distance(16);
-  wait(2, msec);
-  Intake.stop();
-  chassis.set_heading(0);
-  chassis.turn_to_angle(35);
-  chassis.drive_distance(19);
-  Doinker.set(false);
-  chassis.set_heading(0);
-  chassis.turn_to_angle(67);
-  chassis.drive_distance(-8);
-  Intake.spin(reverse, 100, percent);
 }
 
-// 6-7 ball auton (goes to corner goal, picks up balls, goes to matchloader, matchloads 3 balls, goes to high goal and scores)
+void frontR(){ 
+  chassis.set_heading(0);
+  chassis.drive_max_voltage = 6;
+  Intake2.spin(forward, 100, percent);
+  Intake1.spin(reverse, 100, percent);
+  chassis.turn_to_angle(36);
+  chassis.drive_distance(29);
+  wait(2, msec);
+  chassis.drive_distance(-30);
+  Intake.stop();
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(38);
+  Descorer.set(false);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(-40);
+  Intake.spin(reverse, 100, percent);
+  /*AUTON DESCRIPTION:
+  Picks up 3 balls right corner
+  , goes to high goal
+  , scores 4 balls total*/
+}
+
+
 void HighGoalLR(){
   chassis.set_heading(0);
-  chassis.drive_max_voltage = 7;
-  Doinker.set(true);
-  Intake.spin(reverse, 100, percent);
-  chassis.turn_to_angle(-33);
-  chassis.drive_distance(24);
+  chassis.drive_max_voltage = 6;
+  Intake2.spin(forward, 100, percent);
+  Intake1.spin(reverse, 100, percent);
+  chassis.turn_to_angle(-36);
+  chassis.drive_distance(29);
   wait(2, msec);
-  chassis.drive_distance(-20);
+  chassis.drive_distance(-30);
+  Intake.stop();
   chassis.turn_to_angle(-90);
-  chassis.drive_distance(15);
-  chassis.turn_to_angle(0);
+  chassis.drive_distance(38);
+  chassis.turn_to_angle(-180);
   MatchLoader.set(true);
-  wait(2, msec);
-  chassis.drive_distance(15);
+  chassis.drive_distance(19);
+  Intake2.spin(forward, 100, percent);
+  Intake1.spin(reverse, 100, percent);
+  wait(1, sec);
+  chassis.drive_distance(-25);
+  Descorer.set(false);
   Intake.spin(reverse, 100, percent);
-  wait(2, msec);
-  chassis.drive_distance(-15);
-  Intake.spin(forward, 100, percent);
+  wait(1, sec);
+  chassis.drive_distance(5);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(15);
+  chassis.turn_to_angle(90);
+  Descorer.set(true);
+  chassis.drive_distance(15);
+  /*AUTON DESCRIPTION:
+  Picks up 3 corner left balls
+  , goes to matchloader,
+  , puts down matchloader and rams matchloader
+  , gets 3 balls
+  , moves back and scores on high goal
+  , 7 balls total if succesful*/
 }
+
 
 
 // 6-7 ball auton (goes to corner goal, picks up balls, goes to matchloader, matchloads 3 balls, goes to high goal and scores)
 void HighGoalRR(){
   chassis.set_heading(0);
-  chassis.drive_max_voltage = 7;
-  Doinker.set(true);
-  Intake.spin(reverse, 100, percent);
-  chassis.turn_to_angle(33);
-  chassis.drive_distance(24);
+  chassis.drive_max_voltage = 6;
+  Descorer.set(true);
+  Intake.spin(reverse, 75, percent);
+  chassis.turn_to_angle(36);
+  chassis.drive_distance(29);
   wait(2, msec);
-  chassis.drive_distance(-20);
+  chassis.drive_distance(-30);
+  Intake.stop();
   chassis.turn_to_angle(90);
-  chassis.drive_distance(15);
-  chassis.turn_to_angle(0);
+  chassis.drive_distance(40);
+  chassis.turn_to_angle(180);
   MatchLoader.set(true);
-  wait(2, msec);
-  chassis.drive_distance(15);
+  chassis.drive_distance(25);
+  Intake2.spin(forward, 100, percent);
+  Intake1.spin(reverse, 100, percent);
+  wait(1, sec);
+  chassis.drive_distance(-40);
+  Descorer.set(false);
   Intake.spin(reverse, 100, percent);
-  wait(2, msec);
-  chassis.drive_distance(-15);
-  Intake.spin(forward, 100, percent);
+  /*AUTON DESCRIPTION:
+  Picks up 3 corner right balls
+  ,puts down matchloader and rams matchloader
+  , gets 3 balls
+  , moves back on high goal,
+  , scores 7 balls if succesful*/
 }
 
 void HighGoalLB();

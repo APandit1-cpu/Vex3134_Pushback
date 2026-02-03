@@ -25,16 +25,14 @@ extern motor_group Intake;
 // extern motor Roller;
 
 extern digital_out MatchLoader;
-extern digital_out Doinker;
+extern digital_out Descorer;
 extern digital_out MidScorer;
 extern inertial InertialSensor;
 extern vex::vision VisionSensor;
 
 extern bool isRunning;
 extern bool isLoad;
-extern bool isExtension;
-extern bool isRamp;
-extern bool isDoinker;
+extern bool isDescorer;
 extern bool isMid;
 
 void  vexcodeInit( void );

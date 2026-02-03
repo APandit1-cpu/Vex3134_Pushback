@@ -5,7 +5,7 @@ competition Competition;
 
 motor Left1 = motor(PORT16,ratio6_1,false); // true 12
 motor Left2 = motor(PORT17,ratio6_1,false); // true 14
-motor Left3 = motor(PORT20,ratio6_1,false); // true 11
+motor Left3 = motor(PORT1,ratio6_1,false); // true 11
 motor_group LeftDrive = motor_group(Left1,Left2,Left3); // Left drivetrain
  
 motor Right1 = motor(PORT12,ratio6_1,true); // true
@@ -13,10 +13,10 @@ motor Right2 = motor(PORT14,ratio6_1,true);  // true
 motor Right3 = motor(PORT11,ratio6_1,true); // true
 motor_group RightDrive = motor_group(Right1,Right2,Right3); // Right drivetrain
 
-motor Intake1 = motor(PORT9,ratio6_1,false); // Has 2 rubber band rollers, 2 flex wheel rollers
-motor Intake2 = motor(PORT8, ratio6_1, false); // Has 3 rubber band rollers
+motor Intake1 = motor(PORT12,ratio6_1,true); // Has 2 rubber band rollers, 2 flex wheel rollers
+motor Intake2 = motor(PORT13, ratio6_1, false); // Has 3 rubber band rollers
 motor_group Intake = motor_group(Intake1, Intake2); // Controls all rubber band rollers, 2 flex wheel rollers
-inertial InertialSensor = inertial(PORT2); // Used for auton
+inertial InertialSensor = inertial(PORT9); // Used for auton
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -285,11 +285,11 @@ else {
   MatchLoader.set(false);
 }
 
-if (isDoinker) {
-  Doinker.set(true);
+if (isDescorer) {
+  Descorer.set(true);
 }
 else {
-  Doinker.set(false);
+  Descorer.set(false);
 }
 
 if (isMid) {
@@ -303,23 +303,33 @@ if(Controller1.ButtonA.pressing()) {
   isLoad = !isLoad;
   waitUntil(!Controller1.ButtonA.pressing());
 }
-if(Controller1.ButtonB.pressing()) {
-  isDoinker = !isDoinker;
-  waitUntil(!Controller1.ButtonB.pressing());
-}
 if(Controller1.ButtonX.pressing()) {
-  isMid = !isMid;
+  isDescorer = !isDescorer;
   waitUntil(!Controller1.ButtonX.pressing());
 }
+if(Controller1.ButtonB.pressing()) {
+  isMid = !isMid;
+  waitUntil(!Controller1.ButtonB.pressing());
+}
 
-  if (Controller1.ButtonL1.pressing()) {
+ /* if (Controller1.ButtonL1.pressing()) {
     Intake.spin(reverse);
   } else if (Controller1.ButtonL2.pressing()) {
     Intake.spin(forward);
   } else {
     Intake.stop();
   }
-
+*/
+  if (Controller1.ButtonL1.pressing()) {
+    Intake1.spin(reverse);
+  } else if (Controller1.ButtonR1.pressing()) {
+    Intake2.spin(reverse);
+  } else if (Controller1.ButtonL2.pressing()) {
+    Intake2.spin(forward);
+  } else {
+    Intake1.stop();
+    Intake2.stop();
+  }
 }
 
 // prevent CPU overuse
@@ -330,7 +340,7 @@ wait(20,msec);
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   // INITIALIZE THE AUTON YOU WANT HERE: (autons are in autons.cpp)
-  Competition.autonomous(frontL);
+  Competition.autonomous(HighGoalRR);
   Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
