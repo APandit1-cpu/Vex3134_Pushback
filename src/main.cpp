@@ -5,18 +5,19 @@ competition Competition;
 
 motor Left1 = motor(PORT16,ratio6_1,false); // true 12
 motor Left2 = motor(PORT17,ratio6_1,false); // true 14
-motor Left3 = motor(PORT1,ratio6_1,false); // true 11
+motor Left3 = motor(PORT1,ratio6_1,true); // true 11
 motor_group LeftDrive = motor_group(Left1,Left2,Left3); // Left drivetrain
  
 motor Right1 = motor(PORT12,ratio6_1,true); // true
 motor Right2 = motor(PORT14,ratio6_1,true);  // true
-motor Right3 = motor(PORT11,ratio6_1,true); // true
+motor Right3 = motor(PORT11,ratio6_1,false); // true
 motor_group RightDrive = motor_group(Right1,Right2,Right3); // Right drivetrain
 
 motor Intake1 = motor(PORT12,ratio6_1,true); // Has 2 rubber band rollers, 2 flex wheel rollers
-motor Intake2 = motor(PORT13, ratio6_1, false); // Has 3 rubber band rollers
+motor Intake2 = motor(PORT13, ratio6_1, true); // Has 3 rubber band rollers
 motor_group Intake = motor_group(Intake1, Intake2); // Controls all rubber band rollers, 2 flex wheel rollers
-inertial InertialSensor = inertial(PORT9); // Used for auton
+
+inertial InertialSensor = inertial(PORT6); // Used for auton
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -59,13 +60,12 @@ ZERO_TRACKER_NO_ODOM,
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
 
 //Left Motors:
-RightDrive,
-
+motor_group(Left1,Left2,Left3);
 //Right Motors:
-LeftDrive,
+motor_group(Right1,Right2,Right3);
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT2,
+PORT6,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -73,7 +73,7 @@ PORT2,
 //External ratio, must be in decimal, in the format of input teeth/output teeth.
 //If your motor has an 84-tooth gear and your wheel has a 60-tooth gear, this value will be 1.4.
 //If the motor drives the wheel directly, this value is 1:
-0.6,
+0.75,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
@@ -136,17 +136,17 @@ void pre_auton() {
   default_constants();
 
   while(!auto_started){
-    // Brain.Screen.clearScreen();
-    // Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
-    // Brain.Screen.printAt(5, 40, "Battery Percentage:");
-    // Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
-    // Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
-    // Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
-    // Brain.Screen.printAt(5, 120, "Selected Auton:");
-    // switch(current_auton_selection){
-    //   case 0:
-    //     Brain.Screen.printAt(5, 140, "Auton 1");
-    //     break;
+    Brain.Screen.clearScreen();
+    Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
+    Brain.Screen.printAt(5, 40, "Battery Percentage:");
+    Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
+    Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
+    Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
+    Brain.Screen.printAt(5, 120, "Selected Auton:");
+    switch(current_auton_selection){
+       case 0:
+         Brain.Screen.printAt(5, 140, "LHighGoal");
+         break;
     //   case 1:
     //     Brain.Screen.printAt(5, 140, "Auton 2");
     //     break;
@@ -174,7 +174,7 @@ void pre_auton() {
     //   current_auton_selection ++;
     // } else if (current_auton_selection == 8){
     //   current_auton_selection = 0;
-    // }
+     }
     current_auton_selection = 0;
     task::sleep(10); // ignore this error, its meant to be here, otherwise the brain will malfunction.
   }
@@ -322,14 +322,19 @@ if(Controller1.ButtonB.pressing()) {
 */
   if (Controller1.ButtonL1.pressing()) {
     Intake1.spin(reverse);
-  } else if (Controller1.ButtonR1.pressing()) {
-    Intake2.spin(reverse);
   } else if (Controller1.ButtonL2.pressing()) {
-    Intake2.spin(forward);
+    Intake1.spin(forward);
   } else {
     Intake1.stop();
+  }
+  if (Controller1.ButtonR1.pressing()) {
+    Intake2.spin(reverse);
+  } else if (Controller1.ButtonR2.pressing()) {
+    Intake2.spin(forward);
+  } else {
     Intake2.stop();
   }
+  
 }
 
 // prevent CPU overuse
@@ -340,7 +345,7 @@ wait(20,msec);
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   // INITIALIZE THE AUTON YOU WANT HERE: (autons are in autons.cpp)
-  Competition.autonomous(HighGoalRR);
+  Competition.autonomous(HighGoalLR);
   Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
@@ -351,3 +356,4 @@ int main() {
     wait(100, msec);
   }
 }
+
